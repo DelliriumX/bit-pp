@@ -5,10 +5,11 @@
 //  output: pozicija karaktera || -1
 
 function findChar(char, text) {
+    var position = -1
     for (var i = 0; i < text.length; i++) {
         if (text[i] === char) {
-            return i
+            position = i + 1
         }
     }
-    return -1
+    return position
 }
