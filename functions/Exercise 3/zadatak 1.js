@@ -4,6 +4,11 @@
 //  input: string a, string b, broj
 //  output: string
 
+// ideja je da kopiramo prvi string SLOVO PO SLOVO dok ne dodjemo do mesta
+// gde treba da ubacimo drugi string
+// zatim cemo drugi string U CELOSTI (jer nema nikakve potrebe za slovo po slovo)
+// nalepiti i odmah potom nastaviti dalje ko da se nista nije desilo
+
 function fn(insert, text, pos) {
     var result = '';
 
