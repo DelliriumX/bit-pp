@@ -21,15 +21,15 @@
 //  Na kraju sabiramo listu i poredimo je sa dobijenim brojem
 
 function perfectNumber(num) {
-  var suma = 1
+  var suma = 1;
 
   for (var i = 2; i < num; i++) {
     if (num % i === 0) {
       suma += i;
     }
   }
-  return suma === num
+  return suma === num;
 }
 
-console.log(perfectNumber(28))
-console.log(perfectNumber(27))
+console.log(perfectNumber(28));
+console.log(perfectNumber(27));
