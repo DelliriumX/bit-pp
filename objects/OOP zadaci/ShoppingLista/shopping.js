@@ -1,5 +1,6 @@
 (function () {
-
+    // POMOCNE FUNKCIJE
+    // =============================
     function formatPrice(price) {
         var formatted;
         var converted = Number(price)
@@ -27,7 +28,8 @@
             console.log("Invalid date given to constructor.")
         }
     }
-
+    // KONSTRUKTORSKE FUNKCIJE
+    // =============================
     function Product(ime, cena, rok) {
         this.name = ime;
         this.price = formatPrice(cena)
@@ -47,11 +49,61 @@
 
     function ShoppingBag() {
         this.list = []
+
+        this.addProduct = function (proizvod) {
+            if (proizvod.expirationDate > new Date()) {
+                this.list.push(proizvod)
+            }
+        }
+
+        this.averagePrice = function () {
+            var sum = this.calculateTotalPrice()
+
+            return (sum / this.list.length).toFixed(3)
+        }
+
+        this.getMostExpensive = function () {
+            return this.list.map(function (el) {
+                return el.price
+            }).reduce(function (dosadashnjiMax, el) {
+                return Math.max(dosadashnjiMax, el)
+            })
+        }
+
+        this.calculateTotalPrice = function () {
+            return this.list.reduce(function (sum, el) {
+                return sum + el.price
+            }, 0)
+        }
     }
 
-    var a = new Product('Milka', 15.859858, new Date(Date.now()))
-    console.log(a.getInfo())
+    function PaymentCard(novac, aktivna, expDate) {
+        this.accountBalance = formatPrice(novac)
+        this.isActive = aktivna
+        this.validUntil = checkDate(expDate)
+    }
 
+    // NORMALNE FUNKCIJE
+    // =============================
+    function checkoutAndBuy(korpa, kartica) {
+        var novcaNaKartici = kartica.accountBalance
+        var ukupnaCena = korpa.calculateTotalPrice()
+        if (novcaNaKartici > ukupnaCena) {
+            console.log("Purchase successful!")
+        } else {
+            console.log("Purchase unsuccessful, lacking balance: ", novcaNaKartici - ukupnaCena)
+        }
+    }
+
+    var chocolate = new Product('Milka', 150.859, new Date('2020-12-26'))
+    var milk = new Product("Mleko", 88.85, new Date('2020-11-15'))
+    var bread = new Product("Hleb", 50.15, new Date('2020-11-12'))
+
+    var kartica = new PaymentCard(30, true, new Date('2020-11-18'))
+    var cart = new ShoppingBag()
+    cart.addProduct(chocolate)
+    cart.addProduct(bread)
+    checkoutAndBuy(cart, kartica)
 
 
 
