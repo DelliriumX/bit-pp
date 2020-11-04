@@ -1,17 +1,4 @@
 (function () {
-    // POMOCNE FUNKCIJE
-    // =============================
-    function formatPrice(price) {
-        var formatted;
-        var converted = Number(price)
-        if (!isNaN(converted) && isFinite(converted)) {
-            formatted = Number(converted.toFixed(2))
-        } else {
-            console.log("The given price is not valid")
-        }
-        return formatted;
-    }
-
     function generateId() {
         // return Math.floor(Math.random() * 90000 + 10000)
         var id = '';
@@ -21,20 +8,13 @@
         return id
     }
 
-    function checkDate(datum) {
-        if (datum instanceof Date) {
-            return datum
-        } else {
-            console.log("Invalid date given to constructor.")
-        }
-    }
     // KONSTRUKTORSKE FUNKCIJE
     // =============================
     function Product(ime, cena, rok) {
         this.name = ime;
-        this.price = formatPrice(cena)
+        this.price = Number(cena.toFixed(2))
         this.id = generateId()
-        this.expirationDate = checkDate(rok)
+        this.expirationDate = rok
 
         this.getInfo = function () {
             var info = ''
@@ -78,9 +58,9 @@
     }
 
     function PaymentCard(novac, aktivna, expDate) {
-        this.accountBalance = formatPrice(novac)
+        this.accountBalance = novac.toFixed(2)
         this.isActive = aktivna
-        this.validUntil = checkDate(expDate)
+        this.validUntil = expDate
     }
 
     // NORMALNE FUNKCIJE
@@ -88,6 +68,7 @@
     function checkoutAndBuy(korpa, kartica) {
         var novcaNaKartici = kartica.accountBalance
         var ukupnaCena = korpa.calculateTotalPrice()
+        console.log(ukupnaCena)
         if (novcaNaKartici > ukupnaCena) {
             console.log("Purchase successful!")
         } else {
