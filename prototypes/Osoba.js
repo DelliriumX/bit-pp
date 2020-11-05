@@ -15,14 +15,5 @@ Student.prototype.predstaviSe = function () {
     return Osoba.prototype.predstaviSe.call(this) + " i studiram: " + this.program
 }
 
-
-
-
-
-
-
-
-
-
 var ana = new Student('Ana', 'Farmacija')
 console.log(ana.predstaviSe())
