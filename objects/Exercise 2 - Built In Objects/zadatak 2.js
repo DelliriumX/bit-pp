@@ -4,7 +4,6 @@
 
 (function () {
     var input = [8, 13, 8, 9, 12, 8, 1, 1, 4, 13]
-    var result = []
 
     console.log(input.filter(function (el, index, arr) {
         return arr.indexOf(el, index + 1) === -1
