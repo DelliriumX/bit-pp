@@ -14,8 +14,8 @@ function spoj(arr) {
     // mozemo radi preglednosti prebaciti ovaj if u nekoliko redova
     if (
       arr[i] != undefined &&
-      arr[
-      arr[i] != Infiniti] != null &&y &&
+      arr[i] != null &&
+      arr[i] != Infinity &&
       !isNaN(arr[i])
     ) {
       result += arr[i];
